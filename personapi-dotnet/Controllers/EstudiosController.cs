@@ -1,134 +1,183 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using personapi_dotnet.Interfaces;
 using personapi_dotnet.Models.Entities;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace personapi_dotnet.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class EstudiosController : ControllerBase
+    public class EstudiosController : Controller
     {
-        private readonly PersonaDbContext _context;
+        private readonly IEstudioRepository _estudioRepository;
+        private readonly IPersonaRepository _personaRepository;
+        private readonly IProfesionRepository _profesionRepository;
 
-        public EstudiosController(PersonaDbContext context)
+        public EstudiosController(IEstudioRepository estudioRepository, IPersonaRepository personaRepository, IProfesionRepository profesionRepository)
         {
-            _context = context;
+            _estudioRepository = estudioRepository;
+            _personaRepository = personaRepository;
+            _profesionRepository = profesionRepository;
         }
 
-        // GET: api/Estudios
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Estudio>>> GetEstudios()
+        // GET: Estudios
+        public async Task<IActionResult> Index()
         {
-            return await _context.Estudios.ToListAsync();
+            var estudios = await _estudioRepository.GetAllAsync();
+            return View(estudios);
         }
 
-        // GET: api/Estudios/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Estudio>> GetEstudio(int id)
+        // GET: Estudios/Details/#
+        public async Task<IActionResult> Details(int? idProf, int? ccPer)
         {
-            var estudio = await _context.Estudios.FindAsync(id);
+            if (idProf == null || ccPer == null)
+            {
+                return NotFound();
+            }
 
+            var estudio = await _estudioRepository.GetByIdAsync((int)ccPer, (int)idProf);
             if (estudio == null)
             {
                 return NotFound();
             }
 
-            return estudio;
+            return View(estudio);
         }
 
-        // PUT: api/Estudios/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEstudio(int id, Estudio estudio)
+        // GET: Estudios/Create
+        public async Task<IActionResult> Create()
         {
-            if (id != estudio.IdProf)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(estudio).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EstudioExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            ViewData["CcPer"] = new SelectList(await _personaRepository.GetAllAsync(), "Cc", "Cc");
+            ViewData["IdProf"] = new SelectList(await _profesionRepository.GetAllAsync(), "Id", "Id");
+            return View();
         }
 
-        // POST: api/Estudios
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: Estudios/Create
         [HttpPost]
-        public async Task<ActionResult<Estudio>> PostEstudio(Estudio estudio)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("IdProf,CcPer,Fecha,Univer")] Estudio estudio)
         {
-            // Opcionalmente podrías validar existencia de Persona y Profesion aquí
-            var persona = await _context.Personas.FindAsync(estudio.CcPer);
-            var profesion = await _context.Profesions.FindAsync(estudio.IdProf);
+            var profPerExiste = await _estudioRepository.GetByIdAsync(estudio.CcPer, estudio.IdProf) != null;
 
-            if (persona == null || profesion == null)
+            if (profPerExiste)
             {
-                return BadRequest("Persona o Profesion no existente.");
+                ModelState.AddModelError("CcPer", "La profesión para esa persona ya existe.");
+            }
+            else
+            {
+                var profesion = await _profesionRepository.GetByIdAsync(estudio.IdProf);
+                estudio.IdProfNavigation = profesion;
+
+                var persona = await _personaRepository.GetByIdAsync(estudio.CcPer);
+                estudio.CcPerNavigation = persona;
+
+                ModelState.Clear();
+                TryValidateModel(estudio);
+
+                if (ModelState.IsValid)
+                {
+                    await _estudioRepository.AddAsync(estudio);
+                    return RedirectToAction(nameof(Index));
+                }
             }
 
-            // Asignación opcional si quieres seguir manejando navegación
-            estudio.CcPerNavigation = persona;
+            ViewData["CcPer"] = new SelectList(await _personaRepository.GetAllAsync(), "Cc", "Cc", estudio.CcPer);
+            ViewData["IdProf"] = new SelectList(await _profesionRepository.GetAllAsync(), "Id", "Id", estudio.IdProf);
+            return View(estudio);
+        }
+
+        // GET: Estudios/Edit/#
+        public async Task<IActionResult> Edit(int? idProf, int? ccPer)
+        {
+            if (idProf == null || ccPer == null)
+            {
+                return NotFound();
+            }
+
+            var estudio = await _estudioRepository.GetByIdAsync((int)ccPer, (int)idProf);
+            if (estudio == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["CcPer"] = new SelectList(await _personaRepository.GetAllAsync(), "Cc", "Cc", estudio.CcPer);
+            ViewData["IdProf"] = new SelectList(await _profesionRepository.GetAllAsync(), "Id", "Id", estudio.IdProf);
+            return View(estudio);
+        }
+
+        // POST: Estudios/Edit/#
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int idProf, int ccPer, [Bind("IdProf,CcPer,Fecha,Univer")] Estudio estudio)
+        {
+            if (idProf != estudio.IdProf || ccPer != estudio.CcPer)
+            {
+                return NotFound();
+            }
+
+            var profesion = await _profesionRepository.GetByIdAsync(estudio.IdProf);
             estudio.IdProfNavigation = profesion;
 
-            _context.Estudios.Add(estudio);
+            var persona = await _personaRepository.GetByIdAsync(estudio.CcPer);
+            estudio.CcPerNavigation = persona;
 
-            try
+            ModelState.Clear();
+            TryValidateModel(estudio);
+
+            if (ModelState.IsValid)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (_context.Estudios.Any(e => e.IdProf == estudio.IdProf && e.CcPer == estudio.CcPer))
+                try
                 {
-                    return Conflict();
+                    await _estudioRepository.UpdateAsync(estudio);
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!await EstudioExists(estudio.IdProf, estudio.CcPer))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
+                return RedirectToAction(nameof(Index));
             }
-            return CreatedAtAction("GetEstudio", new { idProf = estudio.IdProf, ccPer = estudio.CcPer }, estudio);
+
+            ViewData["CcPer"] = new SelectList(await _personaRepository.GetAllAsync(), "Cc", "Cc", estudio.CcPer);
+            ViewData["IdProf"] = new SelectList(await _profesionRepository.GetAllAsync(), "Id", "Id", estudio.IdProf);
+            return View(estudio);
         }
 
-        // DELETE: api/Estudios/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEstudio(int id)
+        // GET: Estudios/Delete/#
+        public async Task<IActionResult> Delete(int? idProf, int? ccPer)
         {
-            var estudio = await _context.Estudios.FindAsync(id);
+            if (idProf == null || ccPer == null)
+            {
+                return NotFound();
+            }
+
+            var estudio = await _estudioRepository.GetByIdAsync((int)ccPer, (int)idProf);
             if (estudio == null)
             {
                 return NotFound();
             }
 
-            _context.Estudios.Remove(estudio);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return View(estudio);
         }
 
-        private bool EstudioExists(int id)
+        // POST: Estudios/Delete/#
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int idProf, int ccPer)
         {
-            return _context.Estudios.Any(e => e.IdProf == id);
+            await _estudioRepository.DeleteAsync(ccPer, idProf);
+            return RedirectToAction(nameof(Index));
+        }
+
+        private async Task<bool> EstudioExists(int idProf, int ccPer)
+        {
+            return await _estudioRepository.GetByIdAsync(ccPer, idProf) != null;
         }
     }
 }

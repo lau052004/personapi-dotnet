@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|c:\\users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\controllers\\telefonoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|solutionrelative:controllers\\telefonoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|c:\\users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\controllers\\api\\apitelefonoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|solutionrelative:controllers\\api\\apitelefonoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|c:\\users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\controllers\\profesionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|solutionrelative:controllers\\profesionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|c:\\users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\controllers\\api\\apiprofesionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|solutionrelative:controllers\\api\\apiprofesionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|c:\\users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\controllers\\estudioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|solutionrelative:controllers\\estudioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|c:\\users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\controllers\\api\\apipersonascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|solutionrelative:controllers\\api\\apipersonascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|c:\\users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\controllers\\personascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|solutionrelative:controllers\\personascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|c:\\users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\controllers\\api\\apiestudioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58C35EAF-AE4A-4028-B32F-A355FE49A4E4}|personapi-dotnet.csproj|solutionrelative:controllers\\api\\apiestudioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,53 +31,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TelefonoesController.cs",
-              "DocumentMoniker": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\TelefonoesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TelefonoesController.cs",
-              "ToolTip": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\TelefonoesController.cs",
-              "RelativeToolTip": "Controllers\\TelefonoesController.cs",
+              "Title": "APITelefonosController.cs",
+              "DocumentMoniker": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\api\\APITelefonosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\api\\APITelefonosController.cs",
+              "ToolTip": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\api\\APITelefonosController.cs",
+              "RelativeToolTip": "Controllers\\api\\APITelefonosController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T20:28:08.978Z",
+              "WhenOpened": "2025-05-02T04:23:59.912Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ProfesionsController.cs",
-              "DocumentMoniker": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\ProfesionsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProfesionsController.cs",
-              "ToolTip": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\ProfesionsController.cs",
-              "RelativeToolTip": "Controllers\\ProfesionsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
+              "Title": "APIProfesionesController.cs",
+              "DocumentMoniker": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\api\\APIProfesionesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\api\\APIProfesionesController.cs",
+              "ToolTip": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\api\\APIProfesionesController.cs",
+              "RelativeToolTip": "Controllers\\api\\APIProfesionesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T20:26:29.054Z",
+              "WhenOpened": "2025-05-02T04:23:00.897Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "EstudiosController.cs",
-              "DocumentMoniker": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\EstudiosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\EstudiosController.cs",
-              "ToolTip": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\EstudiosController.cs",
-              "RelativeToolTip": "Controllers\\EstudiosController.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAcwGsAAAANAAAAAAAAAA==",
+              "Title": "APIPersonasController.cs",
+              "DocumentMoniker": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\api\\APIPersonasController.cs",
+              "RelativeDocumentMoniker": "Controllers\\api\\APIPersonasController.cs",
+              "ToolTip": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\api\\APIPersonasController.cs",
+              "RelativeToolTip": "Controllers\\api\\APIPersonasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T20:24:52.023Z",
+              "WhenOpened": "2025-05-02T04:22:00.026Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "PersonasController.cs",
-              "DocumentMoniker": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\PersonasController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PersonasController.cs",
-              "ToolTip": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\PersonasController.cs",
-              "RelativeToolTip": "Controllers\\PersonasController.cs",
+              "Title": "APIEstudiosController.cs",
+              "DocumentMoniker": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\api\\APIEstudiosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\api\\APIEstudiosController.cs",
+              "ToolTip": "C:\\Users\\lauov\\source\\repos\\personapi-dotnet\\personapi-dotnet\\Controllers\\api\\APIEstudiosController.cs",
+              "RelativeToolTip": "Controllers\\api\\APIEstudiosController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T20:22:14.297Z",
+              "WhenOpened": "2025-05-02T04:20:53.313Z",
               "EditorCaption": ""
             }
           ]

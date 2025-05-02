@@ -4,10 +4,11 @@ namespace personapi_dotnet.Interfaces
 {
     public interface IProfesionRepository
     {
-        IEnumerable<Profesion> GetAll();
-        Profesion? GetById(int id);
-        void Add(Profesion profesion);
-        void Update(Profesion profesion);
-        void Delete(int id);
+        Task<IEnumerable<Profesion>> GetAllAsync();
+        Task<Profesion?> GetByIdAsync(int id);
+        Task AddAsync(Profesion profesion);
+        Task UpdateAsync(Profesion profesion);
+        Task DeleteAsync(int id);
+        Task<bool> ProfesionExistsAsync(int id);
     }
 }
