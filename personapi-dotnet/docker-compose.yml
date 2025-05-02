@@ -1,0 +1,45 @@
+﻿version: "3.8"
+
+services:
+# ───────────────────────────── SQL SERVER ──────────────────────────
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: persona_db
+    user: root
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Vajuvale20034*
+    volumes:
+      - sql_data:/var/opt/mssql
+      - ./init.sql:/usr/src/app/init.sql
+      - ./entrypoint.sh:/usr/src/app/entrypoint.sh
+    entrypoint: ["/bin/bash", "/usr/src/app/entrypoint.sh"]   # ← SIN chmod
+    networks:
+      webapp-network:
+        aliases:
+          - db
+
+# ───────────────────────────── WEB API ─────────────────────────────
+  webapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: personapi_dotnet_webapi
+    ports:
+      - "5062:5062"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=persona_db;User Id=sa;Password=Vajuvale20034*;TrustServerCertificate=True;
+    depends_on:
+      - db
+    networks:
+      - webapp-network
+
+# ───────────────────────────── RED / VOLUMEN ───────────────────────
+networks:
+  webapp-network:
+    driver: bridge
+
+volumes:
+  sql_data:
+    driver: local
