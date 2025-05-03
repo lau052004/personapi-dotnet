@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using personapi_dotnet.Models.Entities;
-using personapi_dotnet.Interfaces; // Asegúrate de tener las interfaces correspondientes
+using personapi_dotnet.Interfaces;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 using personapi_dotnet.Repositories;

@@ -13,7 +13,7 @@ services:
       - sql_data:/var/opt/mssql
       - ./init.sql:/usr/src/app/init.sql
       - ./entrypoint.sh:/usr/src/app/entrypoint.sh
-    entrypoint: ["/bin/bash", "/usr/src/app/entrypoint.sh"]   # ← SIN chmod
+    entrypoint: ["/bin/bash", "/usr/src/app/entrypoint.sh"]
     networks:
       webapp-network:
         aliases:

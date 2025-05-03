@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<personapi_dotnet.Models.Entities.Persona>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Personas";
 }
 
-<h1>Index</h1>
+<h1>Personas</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,6 +12,9 @@
 <table class="table">
     <thead>
         <tr>
+        <th>
+                @Html.DisplayNameFor(model => model.Cc)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -30,6 +33,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cc)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
